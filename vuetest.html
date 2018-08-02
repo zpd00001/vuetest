@@ -9,35 +9,46 @@
 <div id="app">
   <my-component v-model="deptId"></my-component>
   deptId: {{deptId}}
+  
+  <br>
+  <div style="height:100px;width:100%"></div>
+  
+  <button-counter></button-counter>
+  <button-counter></button-counter>
+  <button-counter></button-counter>
 </div>
 
 <script>
+//下拉框的组件
 Vue.component('my-component', {
   template: `<select :value=deptId @change="handleSelect">
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
 			</select>`,
-  computed:{
-  	currentValue:function () {
-    	return this.value
-		}
-  },
   props: ['deptId'], //接收一个 value prop
   methods: {
     handleSelect:function(event) {
       var value = event.target.value;
-		alert(value);
+		//alert(value);
       this.$emit('input', value); //触发 input 事件，并传入新值
     }
   }
 });
+//单击按钮的组件，演示return function 
+Vue.component('button-counter', {
+  data: function () {
+    return {
+      count: 0
+    }
+  },
+  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+})
 
 new Vue({
 	el: '#app',
   data: {
-  	deptId: '3',
-    num: 0
+  	deptId: '3'
   }
 })
 </script>

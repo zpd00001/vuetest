@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-component  username="username"   user-name="user-name"></my-component>
+</div>
+<script>
+    Vue.component('my-component',{
+        template:'<p class="baz boo">用户名是:{{username}},驼峰用户名是:{{userName}}</p>',
+        props:['username','userName']
+    });
+var vm=new Vue({
+    el:'#app'
+});
+</script>
+</body>
+</html>
